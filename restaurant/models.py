@@ -36,6 +36,8 @@ class Dish(models.Model):
     cooks = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="dishes")
 
     class Meta:
+        verbose_name = "dish"
+        verbose_name_plural = "dishes"
         ordering = ["name"]
 
     def __str__(self):
