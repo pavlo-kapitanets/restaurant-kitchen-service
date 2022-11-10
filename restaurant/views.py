@@ -34,3 +34,9 @@ class DishListView(generic.ListView):
     model = Dish
     template_name = "restaurant/dish_list.html"
     context_object_name = "Dish_list"
+
+
+class CookListView(generic.ListView):
+    model = Cook
+    template_name = "restaurant/cook_list.html"
+    context_object_name = "Cook_list"

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Cook List</h1>
+    {% if Cook_list %}
+      <table class="table table-striped">
+        <tr>
+          <th>ID</th>
+          <th>USERNAME</th>
+          <th>FIRST NAME</th>
+          <th>LAST NAME</th>
+          <th>EXPERIENCE(YEARS)</th>
+        </tr>
+      {% for cook in Cook_list %}
+        <tr>
+          <td>{{ cook.id }}</td>
+          <td><a href="#">{{ cook.username }}</a></td>
+          <td>{{cook.first_name }}</td>
+          <td>{{cook.last_name }}</td>
+          <td>{{cook.years_of_experience}}</td>
+        </tr>
+      {% endfor %}
+      </table>
+    {% else %}
+    <p>There are no cooks in restaurant!</p>
+  {% endif %}
+{% endblock %}
