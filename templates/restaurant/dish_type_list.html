@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Dish Types list</h1>
+  {% if  Dish_type_list %}
+      <table class="table">
+         <thead class="thead-dark">
+        <tr>
+          <th>NAME</th>
+        </tr>
+      </thead>
+      {% for type in Dish_type_list %}
+        <tr>
+          <td>{{ type.name }}</td>
+        </tr>
+      {% endfor %}
+      </table>
+    {% else %}
+    <p>There are no added dish types!</p>
+  {% endif %}
+{% endblock %}
