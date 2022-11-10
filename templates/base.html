@@ -14,12 +14,7 @@
   <div class="row">
     <div class="col-sm-2">
       {% block sidebar %}
-        <ul>
-          <li><a href="{% url "restaurant:index" %}">Home</a></li>
-          <li><a href="#">All cooks</a></li>
-          <li><a href="#">All dishes</a></li>
-          <li><a href="#">All Dish Types</a></li>
-        </ul>
+        {% include "includes/sidebar.html" %}
       {% endblock %}
     </div>
     <div class="col-sm-10">
