@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="ml-3">
+  <h1>Dishes of {{ cook.username }}</h1>
+  <h2>Full name: {{ cook.first_name }} {{ cook.last_name }}</h2>
+  {% for dish in cook.dishes.all %}
+    <hr>
+    <ul>
+      <li><strong>Dish: </strong>{{ dish.name }}</li>
+    </ul>
+    {% empty %}
+    <p>There are no dishes in this cook!!</p>
+  {% endfor %}
+  </div>
+{% endblock %}
