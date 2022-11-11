@@ -39,7 +39,7 @@ class ModelTests(TestCase):
         cook = get_user_model().objects.create_user(
             username=username,
             password=password,
-            years_of_experience= years_of_experience)
+            years_of_experience=years_of_experience)
 
         self.assertEqual(cook.username, username)
         self.assertTrue(cook.check_password(password))
