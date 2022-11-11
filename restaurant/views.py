@@ -1,5 +1,7 @@
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views import generic
 
 from restaurant.models import Cook, Dish, DishType
@@ -24,14 +26,21 @@ def index(request):
     return render(request, "restaurant/index.html", context=context)
 
 
-class DishTypeListView(generic.ListView):
+class DishTypeListView(LoginRequiredMixin, generic.ListView):
     model = DishType
     template_name = "restaurant/dish_type_list.html"
     context_object_name = "Dish_type_list"
     paginate_by = 5
 
 
-class DishListView(generic.ListView):
+class DishTypeCreateView(LoginRequiredMixin, generic.CreateView):
+    model = DishType
+    fields = "__all__"
+    success_url = reverse_lazy("restaurant:dish-type-list")
+    template_name = "restaurant/dish_type_form.html"
+
+
+class DishListView(LoginRequiredMixin, generic.ListView):
     model = Dish
     template_name = "restaurant/dish_list.html"
     context_object_name = "Dish_list"
@@ -39,16 +48,16 @@ class DishListView(generic.ListView):
     paginate_by = 5
 
 
-class CookListView(generic.ListView):
+class CookListView(LoginRequiredMixin, generic.ListView):
     model = Cook
     template_name = "restaurant/cook_list.html"
     context_object_name = "Cook_list"
     paginate_by = 5
 
 
-class DishDetailView(generic.DetailView):
+class DishDetailView(LoginRequiredMixin, generic.DetailView):
     model = Dish
 
 
-class CookDetailView(generic.DetailView):
+class CookDetailView(LoginRequiredMixin, generic.DetailView):
     model = Cook

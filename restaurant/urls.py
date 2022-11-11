@@ -1,12 +1,21 @@
 from django.urls import path
 
-from restaurant.views import index, DishTypeListView, DishListView, CookListView, DishDetailView, CookDetailView
+from restaurant.views import (index,
+                              DishTypeListView,
+                              DishListView,
+                              CookListView,
+                              DishDetailView,
+                              CookDetailView,
+                              DishTypeCreateView,)
 
 urlpatterns = [
     path("", index, name="index"),
     path("dish-types/",
          DishTypeListView.as_view(),
          name="dish-type-list"),
+    path("dish-types/create/",
+         DishTypeCreateView.as_view(),
+         name="dish-type-create"),
     path("dishes/",
          DishListView.as_view(),
          name="dish-list"),
