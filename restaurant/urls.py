@@ -14,7 +14,7 @@ from restaurant.views import (index,
                               DishDeleteView,
                               CookCreateView,
                               CookExperienceUpdateView,
-                              CookDeleteView)
+                              CookDeleteView, assign_cook_to_dish, delete_dish_cook)
 
 urlpatterns = [
     path("", index, name="index"),
@@ -60,6 +60,16 @@ urlpatterns = [
     path("cooks/<int:pk>/delete/",
          CookDeleteView.as_view(),
          name="cook-delete"),
+    path(
+        "cooks/<int:pk>/assign-cook/",
+        assign_cook_to_dish,
+        name="assign-cook"
+    ),
+    path(
+        "cooks/<int:pk>/delete_dish_cook/",
+        delete_dish_cook,
+        name="delete_dish_cook"
+    ),
 ]
 
 app_name = "restaurant"

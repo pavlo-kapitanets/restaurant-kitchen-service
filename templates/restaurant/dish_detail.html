@@ -16,7 +16,18 @@
       <li><strong>Price: </strong>{{ dish.price }}</li>
     </ul>
   <div class="ml-3">
-  <h2>Cooks:</h2>
+  <h2>
+    Cooks:
+  {% if user in dish.cooks.all %}
+    <a href="{% url 'restaurant:delete_dish_cook' pk=dish.id %}"class="btn btn-danger" style="float: right">
+    Delete me from this dish
+    </a>
+    {% else %}
+    <a href="{% url 'restaurant:assign-cook' pk=dish.id %}"class="btn btn-success" style="float: right">
+    Assign me to dish
+    </a>
+  {% endif %}
+  </h2>
 
   {% for cook in dish.cooks.all %}
     <hr>

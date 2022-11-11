@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import generic
 
@@ -117,3 +117,17 @@ class DishDetailView(LoginRequiredMixin, generic.DetailView):
 class CookDetailView(LoginRequiredMixin, generic.DetailView):
     model = Cook
     queryset = Cook.objects.all().prefetch_related("dishes__dish_type")
+
+
+@login_required()
+def assign_cook_to_dish(request, pk):
+    cook = Cook.objects.get(id=request.user.id)
+    cook.dishes.add(pk)
+    return redirect("restaurant:cook-detail", pk=request.user.id)
+
+
+@login_required()
+def delete_dish_cook(request, pk):
+    cook = Cook.objects.get(id=request.user.id)
+    cook.dishes.remove(pk)
+    return redirect("restaurant:cook-detail", pk=request.user.id)
