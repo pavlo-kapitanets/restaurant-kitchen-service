@@ -103,6 +103,13 @@ class CookExperienceUpdateView(LoginRequiredMixin, generic.UpdateView):
     success_url = reverse_lazy("restaurant:cook-list")
 
 
+class CookDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Cook
+    fields = "__all__"
+    success_url = reverse_lazy("restaurant:cook-list")
+    template_name = "restaurant/cook_confirm_delete.html"
+
+
 class DishDetailView(LoginRequiredMixin, generic.DetailView):
     model = Dish
 
