@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
+from restaurant.forms import CookCreationForm
 from restaurant.models import Cook, Dish, DishType
 
 
@@ -90,9 +91,15 @@ class CookListView(LoginRequiredMixin, generic.ListView):
     paginate_by = 5
 
 
+class CookCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Cook
+    form_class = CookCreationForm
+
+
 class DishDetailView(LoginRequiredMixin, generic.DetailView):
     model = Dish
 
 
 class CookDetailView(LoginRequiredMixin, generic.DetailView):
     model = Cook
+    queryset = Cook.objects.all().prefetch_related("dish__dish_type")
