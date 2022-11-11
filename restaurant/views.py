@@ -102,4 +102,4 @@ class DishDetailView(LoginRequiredMixin, generic.DetailView):
 
 class CookDetailView(LoginRequiredMixin, generic.DetailView):
     model = Cook
-    queryset = Cook.objects.all().prefetch_related("dish__dish_type")
+    queryset = Cook.objects.all().prefetch_related("dishes__dish_type")
