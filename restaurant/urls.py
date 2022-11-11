@@ -9,7 +9,9 @@ from restaurant.views import (index,
                               DishTypeCreateView,
                               DishTypeUpdateView,
                               DishTypeDeleteView,
-                              DishCreateView,)
+                              DishCreateView,
+                              DishUpdateView,
+                              DishDeleteView,)
 
 urlpatterns = [
     path("", index, name="index"),
@@ -31,6 +33,12 @@ urlpatterns = [
     path("dishes/create/",
          DishCreateView.as_view(),
          name="dish-create"),
+    path("dishes/<int:pk>/update/",
+         DishUpdateView.as_view(),
+         name="dish-update"),
+    path("dishes/<int:pk>/delete/",
+         DishDeleteView.as_view(),
+         name="dish-delete"),
     path("cooks/",
          CookListView.as_view(),
          name="cook-list"),
