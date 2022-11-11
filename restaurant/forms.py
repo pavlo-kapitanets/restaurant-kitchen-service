@@ -3,7 +3,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 
-from restaurant.models import Cook
+from restaurant.models import Cook, Dish
 
 
 def check_years_of_experience(years_of_experience: int) -> int:
@@ -32,3 +32,15 @@ class CookExperienceUpdateForm(forms.ModelForm):
 
     def clean_years_of_experience(self):
         return check_years_of_experience(self.cleaned_data["years_of_experience"])
+
+
+class DishForm(forms.ModelForm):
+    cooks = forms.ModelMultipleChoiceField(
+        queryset=get_user_model().objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+        required=False
+    )
+
+    class Meta:
+        model = Dish
+        fields = "__all__"
