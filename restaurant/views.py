@@ -4,7 +4,8 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import generic
 
-from restaurant.forms import CookCreationForm, CookExperienceUpdateForm, DishForm, DishTypeSearchForm, DishSearchForm
+from restaurant.forms import CookCreationForm, CookExperienceUpdateForm, DishForm, DishTypeSearchForm, DishSearchForm, \
+    CookSearchForm
 from restaurant.models import Cook, Dish, DishType
 
 
@@ -130,6 +131,27 @@ class CookListView(LoginRequiredMixin, generic.ListView):
     template_name = "restaurant/cook_list.html"
     context_object_name = "Cook_list"
     paginate_by = 5
+    queryset = Cook.objects.all()
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(CookListView, self).get_context_data(**kwargs)
+
+        username = self.request.GET.get("username", "")
+
+        context["search_form"] = CookSearchForm(initial={
+            "username": username
+        })
+
+        return context
+
+    def get_queryset(self):
+        form = CookSearchForm(self.request.GET)
+        if form.is_valid():
+            return self.queryset.filter(
+                username__icontains=form.cleaned_data["username"]
+            )
+
+        return self.queryset
 
 
 class CookCreateView(LoginRequiredMixin, generic.CreateView):
