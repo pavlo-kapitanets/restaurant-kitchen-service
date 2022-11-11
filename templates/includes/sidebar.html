@@ -1,14 +1,14 @@
-<ul class="sidebar-nav">
+<ul class="sidebar-nav list-group" >
   {% if user.is_authenticated %}
-    <li><a href="{% url 'restaurant:cook-detail' pk=user.id %}">{{ user.username }}</a> </li>
-    <li><a href="{% url 'logout' %}">Logout</a> </li>
+    <li class="list-group-item"><a href="{% url 'restaurant:cook-detail' pk=user.id %}">{{ user.username }}</a> </li>
+    <li class="list-group-item"><a href="{% url 'logout' %}">Logout</a> </li>
   {% else %}
-    <li><a href="{% url 'login' %}">Login</a> </li>
+    <li class="list-group-item"><a href="{% url 'login' %}">Login</a> </li>
   {% endif %}
 
   <br>
-    <li><a href="{% url "restaurant:index" %}">Home</a></li>
-    <li><a href="{% url  "restaurant:cook-list"%}">All Cooks</a></li>
-    <li><a href="{% url "restaurant:dish-list" %}">All Dishes</a></li>
-    <li><a href="{% url "restaurant:dish-type-list" %}">All Dish Types</a></li>
+    <li class="list-group-item"><a href="{% url "restaurant:index" %}">Home🏡</a></li>
+    <li class="list-group-item"><a href="{% url  "restaurant:cook-list"%}">All Cooks👨‍🦳</a></li>
+    <li class="list-group-item"><a href="{% url "restaurant:dish-list" %}">All Dishes🍽</a></li>
+    <li class="list-group-item"><a href="{% url "restaurant:dish-type-list" %}">All Dish Types🍕</a></li>
 </ul>
