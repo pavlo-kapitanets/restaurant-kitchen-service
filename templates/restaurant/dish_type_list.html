@@ -8,18 +8,36 @@
     </a>
   </h1>
   {% if  Dish_type_list %}
-      <table class="table">
-         <thead class="thead-dark">
-        <tr>
-          <th>NAME</th>
-        </tr>
-      </thead>
+    <table class="table">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Update</th>
+        <th>Delete</th>
+      </tr>
+
       {% for type in Dish_type_list %}
         <tr>
-          <td>{{ type.name }}</td>
+          <td>
+              {{ type.id }}
+          </td>
+          <td>
+              {{ type.name }}
+          </td>
+          <td>
+              <a href="{% url 'restaurant:dish-type-update' pk=type.id %}">
+                Update
+              </a>
+            </td>
+            <td>
+              <a style="color: red"
+                href="{% url 'restaurant:dish-type-delete' pk=type.id %}">
+                Delete
+              </a>
+            </td>
         </tr>
       {% endfor %}
-      </table>
+    </table>
     {% else %}
     <p>There are no added dish types!</p>
   {% endif %}

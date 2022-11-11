@@ -1,7 +1,14 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>Dish List</h1>
+  <h1>
+    Dish List
+    <a href="{% url 'restaurant:dish-create' %}">
+    <button class="btn btn-success">
+      Add
+    </button>
+  </a>
+  </h1>
     {% if Dish_list %}
       <table class="table table-bordered table-dark">
         <tr>
