@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>
+      Green Street Restaurant
+        <img align="right"; alt="😋" src="https://img.freepik.com/premium-vector/cartoon-kid-cook_10308-227.jpg">
+    </h1>
+    <p>Welcome to the best restaurant in all world!!</p>
+    <br>
+    <h2>
+      Dynamic content
+    </h2>
+    <p>The restaurant has the following record counts:</p>
+    <ul>
+        <li><strong>Dishes:</strong> {{ num_dishes }}</li>
+        <li><strong>Cooks:</strong> {{ num_cooks }}</li>
+        <li><strong>Dish Types:</strong> {{ num_dish_types }}</li>
+    </ul>
+
+    <p>You have visited this page
+        {{ num_visits }} time{{ num_visits|pluralize }}.
+    </p>
+
+{% endblock %}
