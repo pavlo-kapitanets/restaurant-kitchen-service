@@ -5,11 +5,18 @@ from django.core.exceptions import ValidationError
 
 from restaurant.models import Cook, Dish
 
+YEARS_OF_EXPERIENCE = 15
+
 
 def check_years_of_experience(years_of_experience: int) -> int:
-    if years_of_experience > 15:
+    if years_of_experience > YEARS_OF_EXPERIENCE:
         raise ValidationError(
-            "You are a real pro. We cannot afford you."
+            f"You are a real pro. We cannot afford you. "
+            f"Years of experience must be less than {YEARS_OF_EXPERIENCE}"
+        )
+    if years_of_experience < 0:
+        raise ValidationError(
+            "Years of experience must be a positive number!"
         )
     return years_of_experience
 
