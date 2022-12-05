@@ -18,8 +18,6 @@ def check_years_of_experience(years_of_experience: int) -> int:
         raise ValidationError(
             "Years of experience must be a positive number!"
         )
-    if not years_of_experience:
-        raise ValidationError("If you don't have experience set this field to 0")
     return years_of_experience
 
 
