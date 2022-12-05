@@ -1,5 +1,5 @@
 from django.conf import settings
-from django.core.validators import MinValueValidator, MaxValueValidator
+from django.core.validators import MinValueValidator
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.urls import reverse
@@ -16,8 +16,7 @@ class DishType(models.Model):
 
 
 class Cook(AbstractUser):
-    years_of_experience = models.IntegerField(blank=True, validators=[MinValueValidator(0),
-                                                                      MaxValueValidator(100)])
+    years_of_experience = models.IntegerField(blank=True, default=0)
 
     class Meta:
         verbose_name = "cook"
